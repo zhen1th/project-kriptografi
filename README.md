@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🔐 Cryptography Educational App
 
 Aplikasi pembelajaran kriptografi interaktif berbasis **Python + Streamlit** untuk mata kuliah Kriptografi.
@@ -218,3 +219,6 @@ PLAINTEXT
 ### Super Cipher
 - **Input:** `HELLO WORLD`
 - **Output:** Ciphertext hexadecimal berlapis
+=======
+# project-kriptografi
+>>>>>>> 2de01bf7126e292adf63f7202795015f15c5ee4d
