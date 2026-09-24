@@ -85,13 +85,21 @@ def tampilkan_caesar():
 
     st.divider()
 
-    # Pilih mode enkripsi atau dekripsi
-    mode = st.radio(
-        "Pilih mode:",
-        options=["Enkripsi", "Dekripsi"],
-        horizontal=True,
-        key="caesar_mode"
-    )
+    mode = st.session_state.get("caesar_mode", None)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Enkripsi", key="caesar_pilih_enkripsi", use_container_width=True, type="primary" if mode == "Enkripsi" else "secondary"):
+            st.session_state["caesar_mode"] = "Enkripsi"
+            st.rerun()
+    with col2:
+        if st.button("Dekripsi", key="caesar_pilih_dekripsi", use_container_width=True, type="primary" if mode == "Dekripsi" else "secondary"):
+            st.session_state["caesar_mode"] = "Dekripsi"
+            st.rerun()
+
+    if mode is None:
+        st.info("Silakan klik tombol Enkripsi atau Dekripsi di atas untuk menampilkan formulir.")
+        return
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Caesar Cipher")
@@ -179,12 +187,21 @@ def tampilkan_rail_fence():
 
     st.divider()
 
-    mode = st.radio(
-        "Pilih mode:",
-        options=["Enkripsi", "Dekripsi"],
-        horizontal=True,
-        key="rail_mode"
-    )
+    mode = st.session_state.get("rail_mode", None)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Enkripsi", key="rail_pilih_enkripsi", use_container_width=True, type="primary" if mode == "Enkripsi" else "secondary"):
+            st.session_state["rail_mode"] = "Enkripsi"
+            st.rerun()
+    with col2:
+        if st.button("Dekripsi", key="rail_pilih_dekripsi", use_container_width=True, type="primary" if mode == "Dekripsi" else "secondary"):
+            st.session_state["rail_mode"] = "Dekripsi"
+            st.rerun()
+
+    if mode is None:
+        st.info("Silakan klik tombol Enkripsi atau Dekripsi di atas untuk menampilkan formulir.")
+        return
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Rail Fence Cipher")
@@ -320,12 +337,21 @@ def tampilkan_stream_cipher():
         st.write("8 byte pertama keystream:")
         st.dataframe(df_keystream_contoh, use_container_width=True, hide_index=True)
 
-    mode = st.radio(
-        "Pilih mode:",
-        options=["Enkripsi", "Dekripsi"],
-        horizontal=True,
-        key="stream_mode"
-    )
+    mode = st.session_state.get("stream_mode", None)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Enkripsi", key="stream_pilih_enkripsi", use_container_width=True, type="primary" if mode == "Enkripsi" else "secondary"):
+            st.session_state["stream_mode"] = "Enkripsi"
+            st.rerun()
+    with col2:
+        if st.button("Dekripsi", key="stream_pilih_dekripsi", use_container_width=True, type="primary" if mode == "Dekripsi" else "secondary"):
+            st.session_state["stream_mode"] = "Dekripsi"
+            st.rerun()
+
+    if mode is None:
+        st.info("Silakan klik tombol Enkripsi atau Dekripsi di atas untuk menampilkan formulir.")
+        return
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Stream Cipher")
@@ -455,12 +481,21 @@ def tampilkan_block_cipher():
 
     st.divider()
 
-    mode = st.radio(
-        "Pilih mode:",
-        options=["Enkripsi", "Dekripsi"],
-        horizontal=True,
-        key="block_mode"
-    )
+    mode = st.session_state.get("block_mode", None)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Enkripsi", key="block_pilih_enkripsi", use_container_width=True, type="primary" if mode == "Enkripsi" else "secondary"):
+            st.session_state["block_mode"] = "Enkripsi"
+            st.rerun()
+    with col2:
+        if st.button("Dekripsi", key="block_pilih_dekripsi", use_container_width=True, type="primary" if mode == "Dekripsi" else "secondary"):
+            st.session_state["block_mode"] = "Dekripsi"
+            st.rerun()
+
+    if mode is None:
+        st.info("Silakan klik tombol Enkripsi atau Dekripsi di atas untuk menampilkan formulir.")
+        return
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Block Cipher")
@@ -567,57 +602,21 @@ def tampilkan_super_cipher():
 
     st.divider()
 
-    # Tampilkan diagram alur menggunakan teks biasa
-    st.subheader("Alur Enkripsi")
-    st.code(
-        "PLAINTEXT\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 1: Caesar Cipher (K=8)\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 2: Rail Fence Cipher (Rail=8)\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 3: Stream Cipher (Seed=8)\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 4: Block Cipher (K=8)\n"
-        "    |\n"
-        "    v\n"
-        "CIPHERTEXT (Hexadecimal)",
-        language=None
-    )
+    mode = st.session_state.get("super_mode", None)
 
-    st.subheader("Alur Dekripsi")
-    st.code(
-        "CIPHERTEXT (Hexadecimal)\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 1: Block Cipher Dekripsi (K=8)\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 2: Stream Cipher Dekripsi (Seed=8)\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 3: Rail Fence Cipher Dekripsi (Rail=8)\n"
-        "    |\n"
-        "    v\n"
-        "Tahap 4: Caesar Cipher Dekripsi (K=8)\n"
-        "    |\n"
-        "    v\n"
-        "PLAINTEXT",
-        language=None
-    )
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Enkripsi", key="super_pilih_enkripsi", use_container_width=True, type="primary" if mode == "Enkripsi" else "secondary"):
+            st.session_state["super_mode"] = "Enkripsi"
+            st.rerun()
+    with col2:
+        if st.button("Dekripsi", key="super_pilih_dekripsi", use_container_width=True, type="primary" if mode == "Dekripsi" else "secondary"):
+            st.session_state["super_mode"] = "Dekripsi"
+            st.rerun()
 
-    st.divider()
-
-    mode = st.radio(
-        "Pilih mode:",
-        options=["Enkripsi", "Dekripsi"],
-        horizontal=True,
-        key="super_mode"
-    )
+    if mode is None:
+        st.info("Silakan klik tombol Enkripsi atau Dekripsi di atas untuk menampilkan formulir.")
+        return
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Super Cipher")
