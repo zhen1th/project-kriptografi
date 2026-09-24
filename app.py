@@ -216,9 +216,15 @@ def tampilkan_rail_fence():
             if not teks_input.strip():
                 st.warning("Input tidak boleh kosong.")
             else:
-                teks_asli = teks_input.upper()
-                jumlah_rail_efektif = min(KUNCI_GLOBAL, len(teks_asli))
-                teks_sandi, matriks_rail, hasil_per_rail = enkripsi_rail_fence(teks_asli)
+                teks_bersih = teks_input.upper().replace(" ", "")
+                if not teks_bersih:
+                    st.warning("Plaintext tidak boleh hanya berisi spasi.")
+                else:
+                    if " " in teks_input:
+                        st.info("Spasi pada plaintext dihilangkan agar pola transposisi Rail Fence tidak menimbulkan spasi terpisah.")
+                    teks_asli = teks_bersih
+                    jumlah_rail_efektif = min(KUNCI_GLOBAL, len(teks_asli))
+                    teks_sandi, matriks_rail, hasil_per_rail = enkripsi_rail_fence(teks_asli)
 
                 with st.expander("Langkah 1 - Pola Zig-Zag per Karakter", expanded=True):
                     st.write(f"Panjang teks : {len(teks_asli)} karakter")
@@ -267,9 +273,14 @@ def tampilkan_rail_fence():
             if not teks_input.strip():
                 st.warning("Input tidak boleh kosong.")
             else:
-                teks_sandi = teks_input.upper()
-                jumlah_rail_efektif = min(KUNCI_GLOBAL, len(teks_sandi))
-                teks_asli, matriks_rail, hasil_per_rail = dekripsi_rail_fence(teks_sandi)
+                teks_sandi = teks_input.upper().replace(" ", "")
+                if not teks_sandi:
+                    st.warning("Ciphertext tidak boleh hanya berisi spasi.")
+                else:
+                    if " " in teks_input:
+                        st.info("Spasi pada ciphertext dihilangkan untuk memastikan proses transposisi akurat.")
+                    jumlah_rail_efektif = min(KUNCI_GLOBAL, len(teks_sandi))
+                    teks_asli, matriks_rail, hasil_per_rail = dekripsi_rail_fence(teks_sandi)
 
                 with st.expander("Langkah 1 - Hitung Jumlah Karakter per Rail", expanded=True):
                     pola_rail = buat_pola_zigzag(len(teks_sandi), jumlah_rail_efektif)

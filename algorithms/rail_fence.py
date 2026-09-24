@@ -38,9 +38,10 @@ def buat_pola_zigzag(panjang_teks: int, jumlah_rail: int) -> list[int]:
 def enkripsi_rail_fence(teks_asli: str) -> tuple[str, list, list[str]]:
     """
     Mengenkripsi teks menggunakan Rail Fence Cipher.
+    Spasi pada teks asli dihilangkan untuk menjaga keakuratan pola transposisi.
 
     Parameter:
-        teks_asli (str): Teks yang akan dienkripsi (spasi dipertahankan).
+        teks_asli (str): Teks yang akan dienkripsi.
 
     Mengembalikan:
         tuple: (teks_sandi, matriks_rail, hasil_per_rail)
@@ -48,6 +49,11 @@ def enkripsi_rail_fence(teks_asli: str) -> tuple[str, list, list[str]]:
             - matriks_rail (list): Visualisasi pola zig-zag.
             - hasil_per_rail (list[str]): Isi karakter setiap rail.
     """
+    # Hilangkan spasi pada teks asli sesuai ketentuan
+    teks_asli = teks_asli.replace(" ", "")
+    if not teks_asli:
+        return "", [], []
+
     jumlah_rail = KUNCI
 
     # Jika rail lebih banyak dari panjang teks, sesuaikan
@@ -82,6 +88,7 @@ def enkripsi_rail_fence(teks_asli: str) -> tuple[str, list, list[str]]:
 def dekripsi_rail_fence(teks_sandi: str) -> tuple[str, list, list[str]]:
     """
     Mendekripsi teks menggunakan Rail Fence Cipher.
+    Spasi (jika ada) dihilangkan agar pola transposisi konsisten.
 
     Parameter:
         teks_sandi (str): Teks yang akan didekripsi.
@@ -92,6 +99,11 @@ def dekripsi_rail_fence(teks_sandi: str) -> tuple[str, list, list[str]]:
             - matriks_rail (list): Visualisasi pola zig-zag.
             - hasil_per_rail (list[str]): Karakter per rail.
     """
+    # Hilangkan spasi dari ciphertext jika ada
+    teks_sandi = teks_sandi.replace(" ", "")
+    if not teks_sandi:
+        return "", [], []
+
     jumlah_rail = KUNCI
     panjang = len(teks_sandi)
 

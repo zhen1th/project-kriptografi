@@ -28,7 +28,7 @@ balik_rf, _, _ = dekripsi_rail_fence(sandi_rf)
 print(f"\n[2] Rail Fence Cipher")
 print(f"  Enkripsi : {teks_asli} -> {sandi_rf}")
 print(f"  Dekripsi : {sandi_rf} -> {balik_rf}")
-print(f"  Reversible: {balik_rf == teks_asli}")
+print(f"  Reversible: {balik_rf == teks_asli.replace(' ', '')} (spasi dihilangkan)")
 
 # Test Stream Cipher
 sandi_stream, _, _ = enkripsi_stream_cipher(teks_asli)
@@ -64,7 +64,7 @@ print(f"  Tahap 3 RailFen Dec : {hasil_de_super['tahap_2']['output']} -> {hasil_
 print(f"  Tahap 4 Caesar Dec  : {hasil_de_super['tahap_3']['output']} -> {hasil_de_super['tahap_4']['output']}")
 plaintext_kembali = hasil_de_super['plaintext_akhir']
 print(f"  Plaintext Akhir     : {plaintext_kembali}")
-print(f"  Reversible          : {plaintext_kembali == teks_asli}")
+print(f"  Reversible          : {plaintext_kembali == teks_asli.replace(' ', '')} (spasi dihilangkan pada Rail Fence)")
 
 print("\n" + "=" * 60)
 print("SEMUA TEST SELESAI")
