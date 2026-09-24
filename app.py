@@ -50,16 +50,21 @@ KUNCI_GLOBAL = 8  # Kunci tetap K = 8
 # Menggunakan teks biasa tanpa HTML/CSS kustom
 # ============================================================
 
-def tampilkan_matriks_rail_fence_teks(matriks_rail: list, jumlah_rail: int, panjang_teks: int):
+def tampilkan_matriks_rail_fence_teks(matriks_rail: list, jumlah_rail: int = 0, panjang_teks: int = 0):
     """
     Menampilkan visualisasi matriks Rail Fence dalam bentuk teks biasa.
     Menggunakan st.code() agar terlihat rapi tanpa HTML/CSS.
+    Menggunakan dimensi aktual dari matriks_rail agar aman dari IndexError.
     """
+    if not matriks_rail:
+        return
     baris_output = []
-    for nomor_baris in range(jumlah_rail):
-        # Buat representasi setiap baris/rail
+    jumlah_baris = len(matriks_rail)
+    jumlah_kolom = len(matriks_rail[0]) if jumlah_baris > 0 else 0
+
+    for nomor_baris in range(jumlah_baris):
         baris = f"Rail {nomor_baris + 1:2d}: "
-        for kolom in range(panjang_teks):
+        for kolom in range(jumlah_kolom):
             karakter = matriks_rail[nomor_baris][kolom]
             if karakter != '.':
                 baris += f" {karakter} "

@@ -43,10 +43,11 @@ def enkripsi_super_cipher(teks_asli: str) -> dict:
 
     # ── Tahap 2: Rail Fence Cipher ──────────────────────────
     # Susun karakter dalam pola zig-zag pada 8 rail, baca per rail
-    hasil_rail_fence, matriks_rail, hasil_per_rail = enkripsi_rail_fence(hasil_caesar)
+    teks_input_rf = hasil_caesar.replace(" ", "")
+    hasil_rail_fence, matriks_rail, hasil_per_rail = enkripsi_rail_fence(teks_input_rf)
     hasil['tahap_2'] = {
         'nama': 'Rail Fence Cipher',
-        'input': hasil_caesar,
+        'input': teks_input_rf,
         'output': hasil_rail_fence,
         'matriks_rail': matriks_rail,
         'hasil_per_rail': hasil_per_rail,
@@ -129,10 +130,11 @@ def dekripsi_super_cipher(teks_sandi_hex: str) -> dict:
 
     # ── Tahap 3: Rail Fence Decipher ────────────────────────
     # Kembalikan posisi karakter dari pola zig-zag
-    hasil_rail_fence_decipher, matriks_rail, hasil_per_rail = dekripsi_rail_fence(hasil_stream_decipher)
+    teks_input_rf = hasil_stream_decipher.replace(" ", "")
+    hasil_rail_fence_decipher, matriks_rail, hasil_per_rail = dekripsi_rail_fence(teks_input_rf)
     hasil['tahap_3'] = {
         'nama': 'Rail Fence Cipher Dekripsi',
-        'input': hasil_stream_decipher,
+        'input': teks_input_rf,
         'output': hasil_rail_fence_decipher,
         'matriks_rail': matriks_rail,
         'hasil_per_rail': hasil_per_rail,
