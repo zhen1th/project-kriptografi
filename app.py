@@ -7,7 +7,6 @@
 # ============================================================
 
 import streamlit as st
-import pandas as pd
 
 from algorithms.caesar import enkripsi_caesar, dekripsi_caesar
 from algorithms.rail_fence import enkripsi_rail_fence, dekripsi_rail_fence, buat_pola_zigzag
