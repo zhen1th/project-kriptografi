@@ -1,7 +1,7 @@
-"""
-test_algorithms.py
-Script pengujian semua algoritma kriptografi
-"""
+# ============================================================
+# test_algorithms.py
+# Script pengujian semua algoritma kriptografi
+# ============================================================
 from algorithms.caesar import enkripsi_caesar, dekripsi_caesar
 from algorithms.rail_fence import enkripsi_rail_fence, dekripsi_rail_fence
 from algorithms.stream_cipher import enkripsi_stream_cipher, dekripsi_stream_cipher

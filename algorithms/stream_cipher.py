@@ -20,17 +20,6 @@ POSISI_TAP = [7, 3]  # Posisi tap untuk feedback LFSR (0-indexed dari kiri)
 
 
 def buat_keystream(panjang: int) -> tuple[list[int], list[list[int]]]:
-    """
-    Membuat keystream menggunakan LFSR (Linear Feedback Shift Register).
-
-    Parameter:
-        panjang (int): Jumlah byte keystream yang dibutuhkan.
-
-    Mengembalikan:
-        tuple: (keystream_byte, riwayat_register)
-            - keystream_byte (list[int]): Daftar nilai byte keystream.
-            - riwayat_register (list[list[int]]): Riwayat register LFSR per langkah.
-    """
     # Inisialisasi register LFSR dari nilai KUNCI dalam bentuk 8 bit
     register = [(KUNCI >> (PANJANG_REGISTER - 1 - bit)) & 1
                 for bit in range(PANJANG_REGISTER)]
@@ -66,18 +55,6 @@ def buat_keystream(panjang: int) -> tuple[list[int], list[list[int]]]:
 
 
 def enkripsi_stream_cipher(teks_asli: str) -> tuple[str, list[dict], list[int]]:
-    """
-    Mengenkripsi teks menggunakan Stream Cipher (XOR dengan keystream LFSR).
-
-    Parameter:
-        teks_asli (str): Teks yang akan dienkripsi.
-
-    Mengembalikan:
-        tuple: (teks_sandi_hex, langkah_enkripsi, keystream)
-            - teks_sandi_hex (str): Hasil enkripsi dalam format hexadecimal.
-            - langkah_enkripsi (list[dict]): Detail proses setiap byte.
-            - keystream (list[int]): Nilai keystream yang digunakan.
-    """
     # Konversi teks ke byte (ASCII)
     data_byte = [ord(karakter) for karakter in teks_asli]
     panjang = len(data_byte)
@@ -110,21 +87,6 @@ def enkripsi_stream_cipher(teks_asli: str) -> tuple[str, list[dict], list[int]]:
 
 
 def dekripsi_stream_cipher(teks_sandi_hex: str) -> tuple[str, list[dict], list[int]]:
-    """
-    Mendekripsi teks dari format hexadecimal menggunakan Stream Cipher.
-
-    Parameter:
-        teks_sandi_hex (str): Ciphertext dalam format hexadecimal (dipisah spasi).
-
-    Mengembalikan:
-        tuple: (teks_asli, langkah_dekripsi, keystream)
-            - teks_asli (str): Hasil dekripsi.
-            - langkah_dekripsi (list[dict]): Detail proses setiap byte.
-            - keystream (list[int]): Nilai keystream yang digunakan.
-
-    Raise:
-        ValueError: Jika format hexadecimal tidak valid.
-    """
     # Parse hexadecimal menjadi daftar byte
     try:
         daftar_hex = teks_sandi_hex.strip().split()

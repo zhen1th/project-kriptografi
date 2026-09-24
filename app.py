@@ -51,11 +51,6 @@ KUNCI_GLOBAL = 8  # Kunci tetap K = 8
 # ============================================================
 
 def tampilkan_matriks_rail_fence_teks(matriks_rail: list, jumlah_rail: int = 0, panjang_teks: int = 0):
-    """
-    Menampilkan visualisasi matriks Rail Fence dalam bentuk teks biasa.
-    Menggunakan st.code() agar terlihat rapi tanpa HTML/CSS.
-    Menggunakan dimensi aktual dari matriks_rail agar aman dari IndexError.
-    """
     if not matriks_rail:
         return
     baris_output = []
@@ -899,12 +894,6 @@ def tampilkan_program():
 # ============================================================
 
 def tampilkan_sidebar() -> str:
-    """
-    Menampilkan sidebar dengan dua menu: PROGRAM dan ABOUT.
-
-    Mengembalikan:
-        str: Menu yang dipilih pengguna ("PROGRAM" atau "ABOUT").
-    """
     with st.sidebar:
         st.title("Aplikasi Kriptografi")
         st.write("Kelompok Kriptografi")
@@ -926,7 +915,6 @@ def tampilkan_sidebar() -> str:
 # ============================================================
 
 def main():
-    """Fungsi utama yang menjalankan aplikasi Streamlit."""
     menu_dipilih = tampilkan_sidebar()
 
     if menu_dipilih == "PROGRAM":

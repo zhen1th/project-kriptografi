@@ -10,17 +10,6 @@ KUNCI = 8  # Kunci tetap K = 8
 
 
 def enkripsi_caesar(teks_asli: str) -> tuple[str, list[dict]]:
-    """
-    Mengenkripsi teks menggunakan Caesar Cipher.
-
-    Parameter:
-        teks_asli (str): Teks yang akan dienkripsi.
-
-    Mengembalikan:
-        tuple: (teks_sandi, langkah_enkripsi)
-            - teks_sandi (str): Hasil enkripsi.
-            - langkah_enkripsi (list[dict]): Daftar langkah per karakter.
-    """
     teks_sandi = ""
     langkah_enkripsi = []
 
@@ -60,17 +49,6 @@ def enkripsi_caesar(teks_asli: str) -> tuple[str, list[dict]]:
 
 
 def dekripsi_caesar(teks_sandi: str) -> tuple[str, list[dict]]:
-    """
-    Mendekripsi teks menggunakan Caesar Cipher.
-
-    Parameter:
-        teks_sandi (str): Teks yang akan didekripsi.
-
-    Mengembalikan:
-        tuple: (teks_asli, langkah_dekripsi)
-            - teks_asli (str): Hasil dekripsi.
-            - langkah_dekripsi (list[dict]): Daftar langkah per karakter.
-    """
     teks_asli = ""
     langkah_dekripsi = []
 

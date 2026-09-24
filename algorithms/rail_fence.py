@@ -9,16 +9,6 @@ KUNCI = 8  # Jumlah rail = K = 8
 
 
 def buat_pola_zigzag(panjang_teks: int, jumlah_rail: int) -> list[int]:
-    """
-    Membuat pola zig-zag berupa daftar nomor rail untuk setiap posisi karakter.
-
-    Parameter:
-        panjang_teks (int): Jumlah karakter dalam teks.
-        jumlah_rail (int): Jumlah rail yang digunakan.
-
-    Mengembalikan:
-        list[int]: Daftar nomor rail (0 s.d. jumlah_rail-1) untuk setiap posisi.
-    """
     pola_rail = []
     nomor_rail_saat_ini = 0
     arah = 1  # 1 = ke bawah, -1 = ke atas
@@ -36,19 +26,6 @@ def buat_pola_zigzag(panjang_teks: int, jumlah_rail: int) -> list[int]:
 
 
 def enkripsi_rail_fence(teks_asli: str) -> tuple[str, list, list[str]]:
-    """
-    Mengenkripsi teks menggunakan Rail Fence Cipher.
-    Spasi pada teks asli dihilangkan untuk menjaga keakuratan pola transposisi.
-
-    Parameter:
-        teks_asli (str): Teks yang akan dienkripsi.
-
-    Mengembalikan:
-        tuple: (teks_sandi, matriks_rail, hasil_per_rail)
-            - teks_sandi (str): Hasil enkripsi.
-            - matriks_rail (list): Visualisasi pola zig-zag.
-            - hasil_per_rail (list[str]): Isi karakter setiap rail.
-    """
     # Hilangkan spasi pada teks asli sesuai ketentuan
     teks_asli = teks_asli.replace(" ", "")
     if not teks_asli:
@@ -86,19 +63,6 @@ def enkripsi_rail_fence(teks_asli: str) -> tuple[str, list, list[str]]:
 
 
 def dekripsi_rail_fence(teks_sandi: str) -> tuple[str, list, list[str]]:
-    """
-    Mendekripsi teks menggunakan Rail Fence Cipher.
-    Spasi (jika ada) dihilangkan agar pola transposisi konsisten.
-
-    Parameter:
-        teks_sandi (str): Teks yang akan didekripsi.
-
-    Mengembalikan:
-        tuple: (teks_asli, matriks_rail, hasil_per_rail)
-            - teks_asli (str): Hasil dekripsi.
-            - matriks_rail (list): Visualisasi pola zig-zag.
-            - hasil_per_rail (list[str]): Karakter per rail.
-    """
     # Hilangkan spasi dari ciphertext jika ada
     teks_sandi = teks_sandi.replace(" ", "")
     if not teks_sandi:

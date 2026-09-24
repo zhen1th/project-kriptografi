@@ -16,18 +16,6 @@ NILAI_KUNCI_BINER = KUNCI & 0xFF  # = 8 = 00001000
 
 
 def enkripsi_block_cipher(teks_asli: str) -> tuple[str, list[dict], int]:
-    """
-    Mengenkripsi teks menggunakan Block Cipher (XOR per blok 8 bit).
-
-    Parameter:
-        teks_asli (str): Teks yang akan dienkripsi.
-
-    Mengembalikan:
-        tuple: (teks_sandi_hex, langkah_enkripsi, jumlah_padding)
-            - teks_sandi_hex (str): Hasil enkripsi dalam format hexadecimal.
-            - langkah_enkripsi (list[dict]): Detail proses setiap blok.
-            - jumlah_padding (int): Jumlah byte padding yang ditambahkan.
-    """
     # Konversi teks ke byte
     data_byte = [ord(karakter) for karakter in teks_asli]
 
@@ -62,20 +50,6 @@ def enkripsi_block_cipher(teks_asli: str) -> tuple[str, list[dict], int]:
 
 
 def dekripsi_block_cipher(teks_sandi_hex: str) -> tuple[str, list[dict]]:
-    """
-    Mendekripsi teks dari format hexadecimal menggunakan Block Cipher.
-
-    Parameter:
-        teks_sandi_hex (str): Ciphertext dalam format hexadecimal (dipisah spasi).
-
-    Mengembalikan:
-        tuple: (teks_asli, langkah_dekripsi)
-            - teks_asli (str): Hasil dekripsi.
-            - langkah_dekripsi (list[dict]): Detail proses setiap blok.
-
-    Raise:
-        ValueError: Jika format hexadecimal tidak valid.
-    """
     # Parse hexadecimal menjadi daftar byte
     try:
         daftar_hex = teks_sandi_hex.strip().split()

@@ -18,17 +18,6 @@ from algorithms.block_cipher import enkripsi_block_cipher, dekripsi_block_cipher
 
 
 def enkripsi_super_cipher(teks_asli: str) -> dict:
-    """
-    Mengenkripsi teks menggunakan Super Cipher (4 tahap berurutan).
-
-    Urutan: Caesar → Rail Fence → Stream Cipher → Block Cipher
-
-    Parameter:
-        teks_asli (str): Teks yang akan dienkripsi.
-
-    Mengembalikan:
-        dict: Berisi input/output dan detail setiap tahap enkripsi.
-    """
     hasil = {}
 
     # ── Tahap 1: Caesar Cipher ──────────────────────────────
@@ -87,20 +76,6 @@ def enkripsi_super_cipher(teks_asli: str) -> dict:
 
 
 def dekripsi_super_cipher(teks_sandi_hex: str) -> dict:
-    """
-    Mendekripsi teks dari Super Cipher (4 tahap terbalik).
-
-    Urutan: Block Decipher → Stream Decipher → Rail Fence Decipher → Caesar Decipher
-
-    Parameter:
-        teks_sandi_hex (str): Ciphertext dalam format hexadecimal (dipisah spasi).
-
-    Mengembalikan:
-        dict: Berisi input/output dan detail setiap tahap dekripsi.
-
-    Raise:
-        ValueError: Jika format hexadecimal tidak valid.
-    """
     hasil = {}
 
     # ── Tahap 1: Block Decipher ─────────────────────────────
@@ -167,18 +142,6 @@ NILAI_KUNCI_BINER = KUNCI & 0xFF  # = 00001000
 
 
 def enkripsi_block_cipher_dari_hex(data_hex: str) -> tuple[str, list[dict], int]:
-    """
-    Mengenkripsi data dalam format hex menggunakan Block Cipher (XOR per byte).
-
-    Input adalah string hex dipisah spasi (output Stream Cipher).
-    Setiap byte XOR-kan dengan kunci K = 8.
-
-    Parameter:
-        data_hex (str): Data dalam format hexadecimal, misalnya "48 45 4C".
-
-    Mengembalikan:
-        tuple: (hasil_hex, langkah_enkripsi, jumlah_padding)
-    """
     daftar_hex = data_hex.strip().split()
     data_byte = [int(nilai_hex, 16) for nilai_hex in daftar_hex]
 
@@ -204,19 +167,6 @@ def enkripsi_block_cipher_dari_hex(data_hex: str) -> tuple[str, list[dict], int]
 
 
 def dekripsi_block_cipher_ke_hex(data_hex: str) -> tuple[str, list[dict]]:
-    """
-    Mendekripsi data hex menggunakan Block Cipher (XOR per byte).
-
-    Karena XOR bersifat simetris (A XOR K XOR K = A),
-    proses dekripsi sama persis dengan enkripsi.
-
-    Parameter:
-        data_hex (str): Data dalam format hexadecimal.
-
-    Mengembalikan:
-        tuple: (hasil_hex, langkah_dekripsi)
-            hasil_hex adalah hex string (output = input Stream Cipher asli)
-    """
     daftar_hex = data_hex.strip().split()
     data_byte = [int(nilai_hex, 16) for nilai_hex in daftar_hex]
 
