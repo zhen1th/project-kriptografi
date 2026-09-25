@@ -72,9 +72,6 @@ def tampilkan_caesar():
         "Setiap huruf digeser sebesar K posisi dalam alfabet (A=0, B=1, ..., Z=25)."
     )
     st.write(f"Kunci yang digunakan: K = {KUNCI_GLOBAL}")
-    st.write("Rumus Enkripsi: C = (P + K) mod 26")
-    st.write("Rumus Dekripsi: P = (C - K) mod 26")
-
     st.divider()
 
     mode = st.session_state.get("caesar_mode", None)
@@ -95,6 +92,7 @@ def tampilkan_caesar():
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Caesar Cipher")
+        st.write("Rumus Enkripsi: C = (P + K) mod 26")
         teks_input = st.text_area(
             "Plaintext:",
             placeholder="Masukkan teks yang akan dienkripsi. Contoh: HELLO WORLD",
@@ -133,6 +131,7 @@ def tampilkan_caesar():
 
     else:  # mode == "Dekripsi"
         st.subheader("Dekripsi Caesar Cipher")
+        st.write("Rumus Dekripsi: P = (C - K) mod 26")
         teks_input = st.text_area(
             "Ciphertext:",
             placeholder="Masukkan ciphertext yang akan didekripsi. Contoh: PMTTW EWZTL",
@@ -316,9 +315,6 @@ def tampilkan_stream_cipher():
         "(Linear Feedback Shift Register)."
     )
     st.write(f"Kunci yang digunakan: K = {KUNCI_GLOBAL} (seed awal LFSR)")
-    st.write("Rumus Enkripsi: C = P XOR Keystream")
-    st.write("Rumus Dekripsi: P = C XOR Keystream")
-
     st.divider()
 
     with st.expander("Informasi Keystream Generator (LFSR)"):
@@ -358,6 +354,7 @@ def tampilkan_stream_cipher():
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Stream Cipher")
+        st.write("Rumus Enkripsi: C = P XOR Keystream")
         teks_input = st.text_area(
             "Plaintext:",
             placeholder="Masukkan teks yang akan dienkripsi. Contoh: HELLO",
@@ -408,6 +405,7 @@ def tampilkan_stream_cipher():
 
     else:  # mode == "Dekripsi"
         st.subheader("Dekripsi Stream Cipher")
+        st.write("Rumus Dekripsi: P = C XOR Keystream")
         st.info("Masukkan ciphertext dalam format hex dipisah spasi. Contoh: 40 6D 64 64 6F")
         teks_input = st.text_area(
             "Ciphertext (Hexadecimal):",
@@ -466,13 +464,6 @@ def tampilkan_block_cipher():
         "dalam blok-blok berukuran tetap. Setiap blok dienkripsi secara terpisah "
         "menggunakan kunci yang sama."
     )
-    st.write(f"Kunci yang digunakan: K = {KUNCI_GLOBAL}")
-    st.write(f"Ukuran blok: 8 bit (1 byte per blok)")
-    st.write(f"Kunci dalam biner: {format(NILAI_KUNCI_BINER, '08b')}")
-    st.write("Rumus Enkripsi: C = P XOR K")
-    st.write("Rumus Dekripsi: P = C XOR K  (XOR bersifat simetris)")
-
-    st.divider()
 
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -502,6 +493,7 @@ def tampilkan_block_cipher():
 
     if mode == "Enkripsi":
         st.subheader("Enkripsi Block Cipher")
+        st.write("Rumus Enkripsi: C = P XOR K")
         teks_input = st.text_area(
             "Plaintext:",
             placeholder="Masukkan teks yang akan dienkripsi. Contoh: HELLO",
@@ -550,6 +542,7 @@ def tampilkan_block_cipher():
 
     else:  # mode == "Dekripsi"
         st.subheader("Dekripsi Block Cipher")
+        st.write("Rumus Dekripsi: P = C XOR K  (XOR bersifat simetris)")
         st.info("Masukkan ciphertext dalam format hex dipisah spasi. Contoh: 40 4D 44 44 47")
         teks_input = st.text_area(
             "Ciphertext (Hexadecimal):",
